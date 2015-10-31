@@ -20,20 +20,5 @@ nbFeature = size(XTr, 2);
 XTrnorm = normalize(XTr);
 XTenorm = normalize(XTe);
 
-% Logistic Regression and Penalized Logistic Regression
-
-tXtr = [ones(nbTraining, 1), XTrnorm];
-tXte = [ones(nbTest, 1), XTenorm];
-
-alpha = 0.01;
-beta = logisticRegression(yTr, tXtr,alpha);
-cost = computeCostLogistic(yTe, tXte, beta);
-disp(cost);
-
-lambda = 4;
-betaPen = penLogisticRegression(yTr, tXtr, alpha, lambda);
-costPen = computeCostLogistic(yTe, tXte, betaPen);
-disp(costPen);
-
-
+K = 11;
 

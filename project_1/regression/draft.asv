@@ -14,11 +14,16 @@ categoricalVar = [9, 10, 12, 15, 31, 35, 39, 48, 49, 59, 65, 68];
 % end
 
 %% plot normalized features
-% figure;
-% for i = 1:size(normX,2)
-%    scatter(normX(:,i), y_train, '.');
-%    hold on;
-% end
+figure;
+for i = 1:size(normX,2)
+   
+    
+   scatter(X_train(:,i), y_train);
+   title(num2str(i));
+   pause;
+end
+
+Xt = [X(:, 1:9), X(:, 10) == 0, X(:, 10) == 1, X(:, 10) == 2, X(:, 46), X(:, 46) .^ 2];
 
 %% Boxplot with normalized value X_train
 figure;
