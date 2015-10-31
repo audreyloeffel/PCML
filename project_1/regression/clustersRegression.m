@@ -1,4 +1,6 @@
 function [beta1, beta2, beta3] = clustersRegression(X_train, alpha, clusters )
+%CLUSTERREGRESSION Return beta for each clusters
+
 
 X = X_train;
 tXTr = [ones(length(X), 1) X];

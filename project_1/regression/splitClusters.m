@@ -57,4 +57,4 @@ xlabel('Feature');
 ylabel('Correlation (X, Y)');
 print -dpdf corr.pdf;
 
-binX = toBinary();
+

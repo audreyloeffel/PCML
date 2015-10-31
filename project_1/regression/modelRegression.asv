@@ -22,11 +22,22 @@ tXte = [ones(length(Xte), 1) Xte];
 p1 = sigmoid(tXte * beta1);
 p2 = sigmoid(tXte * beta2);
 p3 = sigmoid(tXte * beta3);
+probabilities = [p1 p2 p3];
+
+% Beta's for regression in which clusters
+betaC1 = cluster1Regression()
 
 % classify X_test
+% Model contains 1, 2 or 3 corresponding to the cluster X_test belongs to
 
 for i = 1:length(X_test)
-    model = 0;
-    if p1(i,1) > p2(i,1)
-    elso
+    [M, model(i,1)] = max(probabilities(i, :));
+    
+    switch model(i,1)
+        case 1
+        case 2
+        case 3
+    end
+    
 end
+

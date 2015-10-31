@@ -22,11 +22,34 @@ tXte = [ones(length(Xte), 1) Xte];
 p1 = sigmoid(tXte * beta1);
 p2 = sigmoid(tXte * beta2);
 p3 = sigmoid(tXte * beta3);
+probabilities = [p1 p2 p3];
 
-% classify X_test
+% Beta's for regression in which clusters
+betaC1 = cluster1Regression(y_train, X_train);
+XTe1 = Xte;
+[betaC2, XTe2] = cluster2Regression(y_train, X_train, Xte);
+[betaC3, XTe3] = cluster3Regression(y_train, X_train, Xte);
+fprintf('betaCi computed \n');
 
-for i = 1:length(X_test)
-%     model = 0;
-%     if p1(i,1) > p2(i,1)
-%     elseif p2
+
+
+%% TODO : prediction of X_train -> compute the error
+
+%% Prediction for X_test
+for i = 1:length(Xte)
+    [M, model(i,1)] = max(probabilities(i, :));
+   
+    switch model(i,1)
+        case 1
+            tXte =  [1 XTe1(i, :)];
+            yTe(i,1) = tXte * betaC1;
+        case 2
+            tXte =  [1 XTe2(i, :)];
+            yTe(i,1) = tXte * betaC2;
+        case 3
+            tXte =  [1 XTe3(i, :)];
+            yTe(i,1) = tXte * betaC3;
+    end
+    
 end
+
