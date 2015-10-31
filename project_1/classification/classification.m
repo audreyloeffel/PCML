@@ -47,7 +47,7 @@ for i = 1:length(xtest)
     if probaY1(i) > 0.5
         ytest(i,1)= 1;
     else
-        ytest(i,1) = -1;
+        ytest(i,1) = 0;
     end
 end
 
