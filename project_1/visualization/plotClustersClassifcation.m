@@ -4,7 +4,7 @@ load('catClusters.mat');
 figure;
 X = normalize(X_train(clusters(:,1),:));
 for i = 1:size(X,2)
-   scatter(X(:,i), y_train(clusters(:,1)), '.', 'c');
+   scatter(X(:,i), y_train(clusters(:,1)), '.', 'b');
    hold on;
 end
 
@@ -15,10 +15,11 @@ for i = 1:size(X,2)
 end
 X = normalize(X_train(clusters(:,3),:));
 for i = 1:size(X,2)
-   scatter(X(:,i), y_train(clusters(:,3)),'.', 'm');
+   scatter(X(:,i), y_train(clusters(:,3)),'.', 'g');
    hold on;
 end
 
 title('Cluster Classification');
-xlabel('X_train');
-ylabel('y_train');
+xlabel('X\_train');
+ylabel('y\_train');
+print -dpdf catCluster.pdf

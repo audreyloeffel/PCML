@@ -1,5 +1,5 @@
 clearvars
-load('D:\EPFL\Fall 2015\Pattern Classification and Machine Learning CS-433\project_1\datas\Mumbai_regression.mat');
+load('Mumbai_regression.mat');
 
 % form tX (INSERT CODE)
 x = X_train;

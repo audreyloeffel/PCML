@@ -26,31 +26,31 @@ Xtrall = [normalize(Xtrain(:, Xall)), dummyEncode(Xtrain)];
 
 % TODO : test different regressions, with or without categorical, with or whitout feature transformation, for each one find the best parameters
 % (alpha or lambda), compute RMSE, choose the best
-
-%LeastSquare
+for lambda = logspace();
+    %LeastSquare
 
 %Model 0: Only for comparisation, it's not relevant
 lambda = 5;
-[rmseTr, rmseTe] = crossValidation(X_train, y_train, 0, lambda, 'rr', 0);
+[rmseTr, rmseTe] = crossValidation(X_train, y_train,5, 0, lambda, 'rr', 0);
 fprintf('[Model 0] Training %.4f Test %.4f \n', rmseTr, rmseTe);
 
 %Model 1: RidgeRegression with selected features and dummy encoded
 %categorical variables
 lambda = 5;
-[rmseTr, rmseTe] = crossValidation(Xtr, Ytrain, 0, lambda, 'rr', 0);
+[rmseTr, rmseTe] = crossValidation(Xtr, Ytrain,5, 0, lambda, 'rr', 0);
 fprintf('[Model 1] Training %.4f Test %.4f \n', rmseTr, rmseTe);
 
 %Model 2: RidgeRegression with all features and dummy encoded cat.
 %variables
 lambda = 5;
 
-[rmseTr, rmseTe] = crossValidation(Xtrall, Ytrain, 0, lambda, 'rr', 0);
+[rmseTr, rmseTe] = crossValidation(Xtrall, Ytrain,5, 0, lambda, 'rr', 0);
 fprintf('[Model 2] Training %.4f Test %.4f \n', rmseTr, rmseTe);
 %Model 3: RidgeRegression with all features and dummy encoded cat.
 %variables and degree 2
 % lambda = 5;
 % 
-% [rmseTr, rmseTe] = crossValidation(Xtrall, Ytrain, 0, lambda, 'rr', 2);
+% [rmseTr, rmseTe] = crossValidation(Xtrall, Ytrain,5, 0, lambda, 'rr', 2);
 % fprintf('[Model 3] Training %.4f Test %.4f \n', rmseTr, rmseTe);
 
 

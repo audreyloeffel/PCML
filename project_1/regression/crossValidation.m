@@ -1,8 +1,8 @@
-function [mRMSETr, mRMSETe] = crossValidation(X, Y, alpha, lambda, model, degree)
+function [mRMSETr, mRMSETe] = crossValidation(X, Y, K, alpha, lambda, model, degree)
 
 % split data in K fold
 setSeed(1);
-K = 5;
+
 N = size(Y,1);
 idx = randperm(N);
 Nk = floor(N/K);
@@ -33,7 +33,11 @@ for k = 1:K
         case 'rr'            
             beta = ridgeRegression(yTr, tXTr, lambda);
             RMSETr(k) = sqrt(2*MSE(yTr, tXTr, beta));
-            RMSETe(k) = sqrt(2*MSE(yTe, tXTe, beta));  
+            RMSETe(k) = sqrt(2*MSE(yTe, tXTe, beta)); 
+        case 'lr'
+            beta = logisticRegression(yTr, tXTr, alpha);
+            RMSETr(k) = sqrt(2*MSE(yTr, tXTr, beta));
+            RMSETe(k) = sqrt(2*MSE(yTe, tXTe, beta));
         case 'lq'
             beta = leastSquares(y, tX);
             RMSETr(k) = sqrt(2*MSE(yTr, tXTr, beta));

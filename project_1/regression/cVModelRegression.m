@@ -5,7 +5,7 @@ fprintf('[Cross Validation] Start k-fold \n');
 
 % split data in K fold
 setSeed(1);
-K = 10;
+K = 5;
 N = size(y_train,1);
 idx = randperm(N);
 Nk = floor(N/K);
