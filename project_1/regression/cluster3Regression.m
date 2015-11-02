@@ -1,6 +1,4 @@
-function [beta, Xtest] = cluster3Regression(yTr, XTr, Xte)
-
-load('catClusters.mat');
+function [beta, Xtest, XTr] = cluster3Regression(yTr, XTr, Xte, clusters)
 
 cluster = 3;
 Xtrain = XTr(clusters(:,cluster), :);
@@ -20,7 +18,7 @@ Xall = A(~ismember(A, catVar));
 % variables
 
 Xtrall = [normalize(Xtrain(:, Xall)), dummyEncode(Xtrain)];
-
+extXTr = [normalize(XTr(:, Xall)), dummyEncode(XTr)];
 %Model 3: RidgeRegression with all features and feature transformation and dummy encoded cat.
 %variables
 lambda = 5;
@@ -31,6 +29,9 @@ beta = ridgeRegression(Ytrain, tXTr, lambda);
 
 x56te = Xte(:, 56).^2;
 x38te = Xte(:, 38).^2;
+x56tr = XTr(:, 56).^2;
+x38tr = XTr(:, 38).^2;
 Xtest = [Xte normalize(x38te) normalize(x56te)];
 
+XTr = [extXTr normalize(x38tr), normalize(x56tr)];
 end

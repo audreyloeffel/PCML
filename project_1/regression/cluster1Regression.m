@@ -1,6 +1,4 @@
-function [beta] = cluster1Regression(yTr, XTr)
-
-load('catClusters.mat');
+function [beta] = cluster1Regression(yTr, XTr, clusters)
 
 cluster = 1;
 Xtrain = XTr(clusters(:,cluster), :);

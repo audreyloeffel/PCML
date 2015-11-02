@@ -33,8 +33,8 @@ models = [model(:,1)==1, model(:,1)==2, model(:,1)==3];
 % Beta's for regression in which clusters
 betaC1 = cluster1Regression(y_train, X_train, clusters);
 XTe1 = Xte;
-[betaC2, XTe2, ~] = cluster2Regression(y_train, X_train, Xte, clusters);
-[betaC3, XTe3, ~] = cluster3Regression(y_train, X_train, Xte, clusters);
+[betaC2, XTe2] = cluster2Regression(y_train, X_train, Xte, clusters);
+[betaC3, XTe3] = cluster3Regression(y_train, X_train, Xte, clusters);
 fprintf('betaCi computed \n');
 
 
