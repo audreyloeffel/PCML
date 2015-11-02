@@ -34,26 +34,24 @@ Xtrall = [normalize(Xtrain(:, Xall)), dummyEncode(Xtrain)];
 %LeastSquare
 
 %Model 0: Only for comparisation, it's not relevant
-lambda = 5;
+lambda =  15;
 [rmseTr, rmseTe] = crossValidation(X_train, y_train, 5, 0, lambda, 'rr', 0);
 fprintf('[Model 0] Training %.4f Test %.4f \n', rmseTr, rmseTe);
 
 %Model 1: RidgeRegression with selected features and dummy encoded
 %categorical variables
-lambda = 5;
+
 [rmseTr, rmseTe] = crossValidation(Xtr, Ytrain,5, 0, lambda, 'rr', 0);
 fprintf('[Model 1] Training %.4f Test %.4f \n', rmseTr, rmseTe);
 
 %Model 2: RidgeRegression with all features and dummy encoded cat.
 %variables
-lambda = 5;
 
 [rmseTr, rmseTe] = crossValidation(Xtrall, Ytrain,5, 0, lambda, 'rr', 0);
 fprintf('[Model 2] Training %.4f Test %.4f \n', rmseTr, rmseTe);
 
 %Model 3: RidgeRegression with all features and feature transformation and dummy encoded cat.
 %variables
-lambda = 5;
 x46 = Xtrain(:, 46).^2;
 [rmseTr, rmseTe] = crossValidation([Xtrall normalize(x46)], Ytrain,5, 0, lambda, 'rr', 0);
 fprintf('[Model 3] Training %.4f Test %.4f \n', rmseTr, rmseTe);

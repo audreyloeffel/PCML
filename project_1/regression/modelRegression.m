@@ -60,6 +60,7 @@ for i = 1:length(Xte)
             yTe(i,1) = tXte * betaC3;
     end     
 end
+csvwrite('predictions_regression.csv', yTe); 
 
 %% plot
 figure;

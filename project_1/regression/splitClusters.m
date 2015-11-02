@@ -39,22 +39,23 @@ end
 %correlation
 nbFeature = size(X_train, 2);
 for i = 1:nbFeature
-    corrGlobal(i) = corr(X_train(:,i), y_train);
+    %corrGlobal(i) = corr(X_train(:,i), y_train);
     corrCluster1(i) = corr(X_train(clusters == 1 ,i), y_train(clusters == 1));
     corrCluster2(i) = corr(X_train(clusters == 2, i), y_train(clusters == 2));
     corrCluster3(i) = corr(X_train(clusters == 3, i), y_train(clusters == 3));
 end
 figure;
 
-c = [corrGlobal' corrCluster1' corrCluster2' corrCluster3']; 
+c = [corrCluster1' corrCluster2' corrCluster3']; 
 % we can identify which feature we should select for the regression for each clusters
 % We should apply the regression on each cluster, applying the regression
 % on the whole data isn't relevant
 bar(c);
 title('Correlation');
-legend('global','cluster 1','cluster 2','cluster 3');
+legend('cluster 1','cluster 2','cluster 3');
 xlabel('Feature');
 ylabel('Correlation (X, Y)');
+set(gca,'FontSize',14)
 print -dpdf corr.pdf;
 
 

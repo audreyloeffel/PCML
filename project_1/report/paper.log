@@ -1,7 +1,7 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.12.29)  16 OCT 2015 15:00
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.12.29)  2 NOV 2015 19:56
 entering extended mode
-**C:/Users/Audrey/Documents/Etude/MA1/PCML/PCML/project_1/report/paper.tex
-(C:/Users/Audrey/Documents/Etude/MA1/PCML/PCML/project_1/report/paper.tex
+**C:/Users/Audrey/Downloads/report*(1)/report/paper.tex
+("C:/Users/Audrey/Downloads/report (1)/report/paper.tex"
 LaTeX2e <2011/06/27>
 Babel <v3.8m> and hyphenation patterns for english, afrikaans, ancientgreek, ar
 abic, armenian, assamese, basque, bengali, bokmal, bulgarian, catalan, coptic, 
@@ -30,8 +30,8 @@ File: size10.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
 \belowcaptionskip=\skip42
 \bibindent=\dimen102
 )
-(C:\Users\Audrey\Documents\Etude\MA1\PCML\PCML\project_1\report\nips13submit_e.
-sty ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\eso-pic\eso-pic.sty"
+("C:\Users\Audrey\Downloads\report (1)\report\nips13submit_e.sty"
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\eso-pic\eso-pic.sty"
 Package: eso-pic 2015/07/21 v2.0g eso-pic (RN)
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\atbegshi.sty"
@@ -219,3 +219,321 @@ Package graphics Info: Driver file: pdftex.def on input line 91.
 \Gin@req@width=\dimen111
 )
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\subfigure\subfigure.sty"
+Package: subfigure 2002/07/30 v2.1.4 subfigure package
+\subfigtopskip=\skip44
+\subfigcapskip=\skip45
+\subfigcaptopadj=\dimen112
+\subfigbottomskip=\skip46
+\subfigcapmargin=\dimen113
+\subfiglabelskip=\skip47
+\c@subfigure=\count103
+\c@lofdepth=\count104
+\c@subtable=\count105
+\c@lotdepth=\count106
+
+****************************************
+* Local config file subfigure.cfg used *
+****************************************
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\subfigure\subfigure.cfg")
+\subfig@top=\skip48
+\subfig@bottom=\skip49
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsmath\amsmath.sty"
+Package: amsmath 2013/01/14 v2.14 AMS math features
+\@mathmargin=\skip50
+
+For additional information on amsmath, use the `?' option.
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsmath\amstext.sty"
+Package: amstext 2000/06/29 v2.01
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsmath\amsgen.sty"
+File: amsgen.sty 1999/11/30 v2.0
+\@emptytoks=\toks15
+\ex@=\dimen114
+))
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsmath\amsbsy.sty"
+Package: amsbsy 1999/11/29 v1.2d
+\pmbraise@=\dimen115
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsmath\amsopn.sty"
+Package: amsopn 1999/12/14 v2.01 operator names
+)
+\inf@bad=\count107
+LaTeX Info: Redefining \frac on input line 210.
+\uproot@=\count108
+\leftroot@=\count109
+LaTeX Info: Redefining \overline on input line 306.
+\classnum@=\count110
+\DOTSCASE@=\count111
+LaTeX Info: Redefining \ldots on input line 378.
+LaTeX Info: Redefining \dots on input line 381.
+LaTeX Info: Redefining \cdots on input line 466.
+\Mathstrutbox@=\box28
+\strutbox@=\box29
+\big@size=\dimen116
+LaTeX Font Info:    Redeclaring font encoding OML on input line 566.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 567.
+\macc@depth=\count112
+\c@MaxMatrixCols=\count113
+\dotsspace@=\muskip11
+\c@parentequation=\count114
+\dspbrk@lvl=\count115
+\tag@help=\toks16
+\row@=\count116
+\column@=\count117
+\maxfields@=\count118
+\andhelp@=\toks17
+\eqnshift@=\dimen117
+\alignsep@=\dimen118
+\tagshift@=\dimen119
+\tagwidth@=\dimen120
+\totwidth@=\dimen121
+\lineht@=\dimen122
+\@envbody=\toks18
+\multlinegap=\skip51
+\multlinetaggap=\skip52
+\mathdisplay@stack=\toks19
+LaTeX Info: Redefining \[ on input line 2665.
+LaTeX Info: Redefining \] on input line 2666.
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\amsfonts.sty"
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\ifthen.sty"
+Package: ifthen 2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\natbib\natbib.sty"
+Package: natbib 2010/09/13 8.31b (PWD, AO)
+\bibhang=\skip53
+\bibsep=\skip54
+LaTeX Info: Redefining \cite on input line 694.
+\c@NAT@ctr=\count119
+)
+("C:\Users\Audrey\Downloads\report (1)\report\paper.aux")
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Try loading font information for OT1+ptm on input line 39.
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\psnfss\ot1ptm.fd"
+File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
+)
+\AtBeginShipoutBox=\box30
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count120
+\scratchdimen=\dimen123
+\scratchbox=\box31
+\nofMPsegments=\count121
+\nofMParguments=\count122
+\everyMPshowfont=\toks20
+\MPscratchCnt=\count123
+\MPscratchDim=\dimen124
+\MPnumerator=\count124
+\makeMPintoPDFobject=\count125
+\everyMPtoPDFconversion=\toks21
+)
+Package hyperref Info: Link coloring OFF on input line 39.
+ ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\hyperref\nameref.sty"
+Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\gettitlestring.sty"
+Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
+)
+\c@section@level=\count126
+)
+LaTeX Info: Redefining \ref on input line 39.
+LaTeX Info: Redefining \pageref on input line 39.
+LaTeX Info: Redefining \nameref on input line 39.
+
+("C:\Users\Audrey\Downloads\report (1)\report\paper.out")
+("C:\Users\Audrey\Downloads\report (1)\report\paper.out")
+\@outlinefile=\write3
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <17.28> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 42.
+LaTeX Font Info:    Try loading font information for U+msa on input line 42.
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 42.
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 42.
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 42.
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\psnfss\ot1pcr.fd"
+File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
+)
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 43.
+
+<figures/ScatterPlotReg.PNG, id=42, 394.47375pt x 313.17pt>
+File: figures/ScatterPlotReg.PNG Graphic file (type png)
+
+<use figures/ScatterPlotReg.PNG>
+Package pdftex.def Info: figures/ScatterPlotReg.PNG used on input line 62.
+(pdftex.def)             Requested size: 180.67499pt x 143.43394pt.
+
+<figures/BoxPlotB.PNG, id=44, 379.4175pt x 305.64188pt>
+File: figures/BoxPlotB.PNG Graphic file (type png)
+
+<use figures/BoxPlotB.PNG>
+Package pdftex.def Info: figures/BoxPlotB.PNG used on input line 63.
+(pdftex.def)             Requested size: 180.67499pt x 145.54515pt.
+
+<figures/ScatterPlotRegAfterNorm.PNG, id=45, 392.21532pt x 309.40594pt>
+File: figures/ScatterPlotRegAfterNorm.PNG Graphic file (type png)
+
+<use figures/ScatterPlotRegAfterNorm.PNG>
+Package pdftex.def Info: figures/ScatterPlotRegAfterNorm.PNG used on input line
+ 64.
+(pdftex.def)             Requested size: 180.67499pt x 142.53146pt.
+
+<figures/BoxPlotA.PNG, id=46, 376.40625pt x 307.1475pt>
+File: figures/BoxPlotA.PNG Graphic file (type png)
+
+<use figures/BoxPlotA.PNG>
+Package pdftex.def Info: figures/BoxPlotA.PNG used on input line 65.
+(pdftex.def)             Requested size: 195.12877pt x 159.2302pt.
+
+<figures/histReg.PNG, id=47, 387.69844pt x 304.88907pt>
+File: figures/histReg.PNG Graphic file (type png)
+
+<use figures/histReg.PNG>
+Package pdftex.def Info: figures/histReg.PNG used on input line 66.
+(pdftex.def)             Requested size: 180.67499pt x 142.08365pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<figures/corr_cropped.pdf, id=53, 520.94624pt x 434.62375pt>
+File: figures/corr_cropped.pdf Graphic file (type pdf)
+
+<use figures/corr_cropped.pdf>
+Package pdftex.def Info: figures/corr_cropped.pdf used on input line 78.
+(pdftex.def)             Requested size: 180.67499pt x 150.73453pt.
+
+<figures/ft46.pdf, id=54, 526.96875pt x 421.575pt>
+File: figures/ft46.pdf Graphic file (type pdf)
+ <use figures/ft46.pdf>
+Package pdftex.def Info: figures/ft46.pdf used on input line 79.
+(pdftex.def)             Requested size: 180.67499pt x 144.54294pt.
+
+[1
+
+{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}]
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [2 <C:/Users/Audrey/Downloads/report (1)/report/figures/ScatterPlotReg.PNG> <C
+:/Users/Audrey/Downloads/report (1)/report/figures/BoxPlotB.PNG> <C:/Users/Audr
+ey/Downloads/report (1)/report/figures/ScatterPlotRegAfterNorm.PNG> <C:/Users/A
+udrey/Downloads/report (1)/report/figures/BoxPlotA.PNG> <C:/Users/Audrey/Downlo
+ads/report (1)/report/figures/histReg.PNG>]
+<figures/ft3.pdf, id=87, 511.9125pt x 419.5675pt>
+File: figures/ft3.pdf Graphic file (type pdf)
+ <use figures/ft3.pdf>
+Package pdftex.def Info: figures/ft3.pdf used on input line 93.
+(pdftex.def)             Requested size: 180.67499pt x 148.08002pt.
+
+<figures/ft21.pdf, id=88, 536.0025pt x 414.54875pt>
+File: figures/ft21.pdf Graphic file (type pdf)
+ <use figures/ft21.pdf>
+Package pdftex.def Info: figures/ft21.pdf used on input line 94.
+(pdftex.def)             Requested size: 180.67499pt x 139.73021pt.
+
+[3 <C:/Users/Audrey/Downloads/report (1)/report/figures/corr_cropped.pdf> <C:/U
+sers/Audrey/Downloads/report (1)/report/figures/ft46.pdf> <C:/Users/Audrey/Down
+loads/report (1)/report/figures/ft3.pdf> <C:/Users/Audrey/Downloads/report (1)/
+report/figures/ft21.pdf>]
+<figures/cl3lambda_cropped.pdf, id=112, 514.92375pt x 408.52625pt>
+File: figures/cl3lambda_cropped.pdf Graphic file (type pdf)
+
+<use figures/cl3lambda_cropped.pdf>
+Package pdftex.def Info: figures/cl3lambda_cropped.pdf used on input line 134.
+(pdftex.def)             Requested size: 180.67499pt x 143.34164pt.
+
+<figures/ClassificationPlot.PNG, id=114, 390.70969pt x 314.67563pt>
+File: figures/ClassificationPlot.PNG Graphic file (type png)
+
+<use figures/ClassificationPlot.PNG>
+Package pdftex.def Info: figures/ClassificationPlot.PNG used on input line 167.
+
+(pdftex.def)             Requested size: 180.67499pt x 145.51599pt.
+
+<figures/crossValidationClass.PNG, id=115, 402.00188pt x 311.66437pt>
+File: figures/crossValidationClass.PNG Graphic file (type png)
+
+<use figures/crossValidationClass.PNG>
+Package pdftex.def Info: figures/crossValidationClass.PNG used on input line 16
+8.
+(pdftex.def)             Requested size: 180.67499pt x 140.0717pt.
+ [4 <C:/Users/Audrey/Downloads/report (1)/report/figures/cl3lambda_cropped.pdf>
+]
+Underfull \hbox (badness 4859) in paragraph at lines 190--191
+[]\OT1/ptm/m/n/10 Feature En-gi-neer-ing: http://machinelearningmastery.com/dis
+cover-feature-engineering-how-to-
+ []
+
+[5 <C:/Users/Audrey/Downloads/report (1)/report/figures/ClassificationPlot.PNG>
+ <C:/Users/Audrey/Downloads/report (1)/report/figures/crossValidationClass.PNG>
+]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 204.
+ [6]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 204.
+ ("C:\Users\Audrey\Downloads\report (1)\report\paper.aux")
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 204.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 204.
+Package rerunfilecheck Info: File `paper.out' has not changed.
+(rerunfilecheck)             Checksum: 91F8F3037EFE8BEE03C9DF8D8DE01F13;583.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 204.
+ ) 
+Here is how much of TeX's memory you used:
+ 6921 strings out of 493921
+ 98940 string characters out of 3144872
+ 189696 words of memory out of 3000000
+ 10071 multiletter control sequences out of 15000+200000
+ 23793 words of font info for 59 fonts, out of 3000000 for 9000
+ 841 hyphenation exceptions out of 8191
+ 37i,12n,39p,807b,348s stack positions out of 5000i,500n,10000p,200000b,50000s
+{C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Progra
+m Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Program 
+Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx9.pfb><C:/Program Fil
+es (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files
+ (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Program Files (x
+86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files (x86)
+/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Program Files (x86)/MiK
+TeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files (x86)/MiKTe
+X 2.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Program Files (x86)/MiKTeX 2
+.9/fonts/type1/urw/courier/ucrr8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/
+type1/urw/times/utmb8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/t
+imes/utmr8a.pfb>
+Output written on paper.pdf (6 pages, 716878 bytes).
+PDF statistics:
+ 191 PDF objects out of 1000 (max. 8388607)
+ 38 named destinations out of 1000 (max. 500000)
+ 133 words of extra memory for PDF output out of 10000 (max. 10000000)
+

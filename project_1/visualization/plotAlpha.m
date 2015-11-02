@@ -1,10 +1,16 @@
 clear all;
-load('resultAlpha');
-selected=(1:20);
+load('resultAlphaSmall');
+selected=(1:8);
 alpha= aTrTe(selected,1);
 errTr = aTrTe(selected,2);
 errTe = aTrTe(selected,3);
 figure;
 %x(aTrTe(:,1), aTrTe(:,3));
-plot(alpha, errTr, alpha, errTe);
+semilogx(alpha, errTr);
+hold on;
+semilogx(alpha, errTe);
+legend('Training error', 'Test error');
+xlabel('alpha');
+ylabel('RMSE');
+grid on;
 

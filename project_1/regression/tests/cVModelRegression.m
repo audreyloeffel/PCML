@@ -5,7 +5,7 @@ fprintf('[Cross Validation] Start k-fold \n');
 
 % split data in K fold
 setSeed(1);
-K = 5;
+K = 10;
 N = size(y_train,1);
 idx = randperm(N);
 Nk = floor(N/K);
@@ -61,7 +61,7 @@ for k = 1:K
     [betaC3, XTe3, XTr3] = cluster3Regression(yTr, XTr, Xte, clst);
     fprintf('[Cross Validation] BetaCi computed \n');
     
-    
+   
     
     
     
@@ -123,4 +123,5 @@ for k = 1:K
 
 mRMSETr = mean(RMSETr');
 mRMSETe = mean(RMSETe');
+csvwrite('test_errors_regression.csv', mRMSETe);
 
