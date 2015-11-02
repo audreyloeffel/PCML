@@ -1,9 +1,10 @@
 clear all;
 load('resultAlpha');
-alpha= aTrTe(:,1);
-errTr = aTrTe(:,2);
-errTe = aTrTe(:,3);
+selected=(1:20);
+alpha= aTrTe(selected,1);
+errTr = aTrTe(selected,2);
+errTe = aTrTe(selected,3);
 figure;
-scatter(alpha, errTe));
-hold on;
-plot(alpha, errTr);
+%x(aTrTe(:,1), aTrTe(:,3));
+plot(alpha, errTr, alpha, errTe);
+
