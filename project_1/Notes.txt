@@ -1,0 +1,10 @@
+Regression :
+
+- On sépare les points en 3 clusters
+- On trouve le meilleur modèle de regression pour chacun des clusters (ridge, LQ, etc)
+- On applique logisticRegression pour classifier les points dans le bon cluster.
+- Selon le cluster auquel il appartient on applique l'une des 3 méthodes trouvées.
+
+Classification :
+
+-
