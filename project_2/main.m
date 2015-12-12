@@ -25,14 +25,21 @@ XTr = normalizeMe(XTr);
 %% binary {cars, horses, airplane} (1,2,3) -> positive / others (4) -> negative
 
 %transform to binary output
-
-yTr(yTr~=4) = 1;
-yTr(yTr==4) = -1;
+yTrBin = yTr;
+yTrBin(yTrBin~=4) = 1;
+yTrBin(yTrBin==4) = -1;
 gamma = 1;
 C = 1;
-[y_hat, p_hat] = SVM(XTr, yTr, XTr, C, gamma);
-error = ber(yTr, y_hat);
-disp(error);
+[y_hat, p_hat] = SVM(XTr, yTrBin, XTr, C, gamma);
+errorBin = ber(yTrBin, y_hat);
 
-%% multiclass {cars: 1, horses: 2, airplane: 3, others: 4}
+fprintf('[SVM] Binary class error: %f\n', errorBin);
 
+% %% multiclass {cars: 1, horses: 2, airplane: 3, others: 4}
+gamma = 1;
+C = 1;
+[y_hat, p_hat] = multiclassSVM(XTr, yTr, gamma, C);
+disp(size(y_hat));
+disp(y_hat);
+errorMulti = ber(yTr, y_hat);
+fprintf('[SVM] Multiclass error: %f\n', errorMulti);
