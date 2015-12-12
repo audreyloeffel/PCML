@@ -68,6 +68,7 @@ for itCount = 1 : maxIterations
     end
     
     % We now have the working set. Next do the analytical solution:
+    
     updateAlphas(idx1, idx2);
         
     % Print progress in verbose mode 2:
@@ -98,6 +99,7 @@ beta0 = (val1 + val2) / 2;
         % j corresponds to index 2 and i corresponds to index 1.
 
         % Get relevant kernel matrix elements: eq. (15) of [1].
+        
         eta = K(i,i) + K(j,j) - 2 * K(i,j);
 
         % Calculate clip limits: eq. (13) and (14) of [1].

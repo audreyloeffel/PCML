@@ -19,17 +19,20 @@ switch featuresFrom
         XTr = zeros(length(train.X_hog));
 end
       
-yTr = train.y;
-XTr = normalize(XTr);
+yTr = double(train.y);
+XTr = normalizeMe(XTr);
 
 %% binary {cars, horses, airplane} (1,2,3) -> positive / others (4) -> negative
 
 %transform to binary output
-yTr(yTr==4) = 2;
+
 yTr(yTr~=4) = 1;
+yTr(yTr==4) = -1;
 gamma = 1;
 C = 1;
-[y_hat, p_hat] = SVM(XTr, yTr, XTe, C, gamma);
-
+[y_hat, p_hat] = SVM(XTr, yTr, XTr, C, gamma);
+error = ber(yTr, y_hat);
+disp(error);
 
 %% multiclass {cars: 1, horses: 2, airplane: 3, others: 4}
+

@@ -1,15 +1,12 @@
 function [y_hat, p_hat] = SVM(XTr, yTr, XTe, C, gamma)
 
-% data should be {-1, 1}
-
-yTr(yTr==2, :) = -1 ;
 
 % Choice of kernel 
 %K = rbf_kernel(tX, tX, gamma);
-K = linear_kernel(tX, tX);
+K = linear_kernel(XTr, XTr);
 
 % SMO
-[alphas, beta0] = SMO(K, yTr, C);
+[alphas, beta0] = SMO(K, yTr, 0.0002);
 
 % compute predictions
 tX_pred = XTe;
