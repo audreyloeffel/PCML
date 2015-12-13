@@ -1,0 +1,116 @@
+% Written by Audrey Loeffel and Meryem M'hamdi, EPFL for PCML Fall 2015
+% all rights reserved
+
+% This code applies LogisticRegression to our classification data,
+% predicts test errors using cross validation method and predicts output 
+% for test data using this model 
+
+clear all;
+load train/train.mat;
+
+%Extract original dataset
+X_original = train.X_hog;
+X_original = normalize(X_original);
+Y_original = train.y;
+X = X_original;
+N = length(Y_original);
+Y = zeros(N,1);
+
+
+% split data in K fold 
+setSeed(1);
+K = 4; 
+N = size(Y,1);
+idx = randperm(N);
+Nk = floor(N/K);
+for k = 1:K
+    idxCV(k,:) = idx(1+(k-1)*Nk:k*Nk);
+end
+
+% K-fold cross validation
+alpha = 0.000005:0.001:0.01;
+lossr = zeros(length(alpha),1);
+losse = zeros(length(alpha),1);
+for m = 1:length(alpha)
+    fprintf('\nAlpha=%d',alpha(m));
+    for k = 1:K
+        fprintf('\nK=%d',k);
+        %Loop over the possible partitions of multi-class classification logistic regression
+        for q = 1:4
+            %Assign positive and negative classes to reduce our multi-class problem to
+            %binary classification problem
+            for p = 1:N
+                % Our Negative class 
+                if (Y_original(p)==q)
+                    Y(p)=1;
+                % Our Positive class
+                else Y(p)=0;
+                end
+            end
+
+            tX = [ones(N,1) X];
+            
+            % get k'th subgroup in test, others in train
+            idxTe = idxCV(k,:);
+            idxTr = idxCV([1:k-1 k+1:end],:);
+            idxTr = idxTr(:);
+            yTe = Y(idxTe);
+            XTe = X(idxTe,:);
+            yTr = Y(idxTr);
+            XTr = X(idxTr,:);
+
+            nbTraining = size(XTr, 1);
+            nbTest = size(XTe, 1);
+            nbFeature = size(XTr, 2);
+
+            catVar = [1, 8, 12, 18, 26];
+            A = (1:28);
+            nonCatVar = A(~ismember(A,catVar));
+
+            tXtr = [ones(nbTraining, 1), XTr];
+            tXte = [ones(nbTest, 1), XTe];
+
+            %% Applying the method Logistic Regression 
+            beta = logisticRegression(yTr, tXtr,alpha(m)); 
+
+            %%Prediction for train data
+            predr = tXtr*beta;
+            probaY1r = zeros(length(predr),4);
+            probaY1r(:,q) = sigmoid(predr); % return the probability for the point
+            yClassr = zeros(nbTraining,1);
+
+            
+
+            %%Prediction for test data
+            prede = tXte*beta;
+            probaY1e = zeros(length(prede),4);
+            probaY1e(:,q) = sigmoid(prede); % return the probability for the point
+            yClasse = zeros(nbTest,1);
+        end
+        for i = 1:nbTraining
+            probaY1r
+                yClassr(i,1) = 0;
+            end
+        end
+        probaY1r
+        %Calculate the error
+        lossr(k) = ber(double(yTr),yClassr);
+        fprintf('\nCost using BER is %d',lossr(k));
+
+         %Calculate the error
+        losse(k) = ber(double(yTe),yClasse);
+        fprintf('\nCost using BER is %d',losse(k));
+    end
+end
+
+ 
+
+%plot
+figure;
+plot(alpha, lossr,alpha,losse);
+legend('Train Error','Test Error');
+xlabel('values of alpha');
+ylabel('error');
+title('Logistic Regression using 4-fold Cross Validation');
+grid on;
+
