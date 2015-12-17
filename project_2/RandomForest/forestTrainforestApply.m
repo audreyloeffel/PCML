@@ -4,6 +4,7 @@ load train/train.mat;
 %Extract original dataset
 X = train.X_hog;
 X = normalize(X);
+X = ApplyPCA(X); %Apply dimensionality reduction using PCA
 Y = train.y;
 N = length(Y);
 
@@ -17,7 +18,7 @@ hs1=single(Y(4000:6000));
 
 %Tree Parameters: Maximum Depth, Number of Trees, number of features to
 %sample for each node split
-pTrain={'maxDepth',50,'F1',5408,'M',150,'minChild',4};
+pTrain={'maxDepth',50,'F1',1245,'M',150,'minChild',4};
 forest=forestTrain(xs0,hs0,pTrain{:}); 
 
 %Apply Random Forest Model to train data
@@ -30,7 +31,7 @@ fprintf('\nTest Error calculated using BER:%d',cBER(hs1,hsPr1));
 
 %Estimating Error using Mean
 e0=mean(hsPr0~=hs0); e1=mean(hsPr1~=hs1);
-fprintf('errors trn=%f tst=%f\n',e0,e1); figure(1);
+fprintf('\nerrors trn=%f tst=%f\n',e0,e1); figure(1);
 
 %Visualizing the train and test data after classification
 subplot(2,2,1); visualizeData(xs0,2,hs0);
@@ -45,9 +46,9 @@ Y_bin = zeros(N,1);
 for p = 1:N
     % Our Negative class 
     if (Y(p)==4)
-        Y_bin(p)=0;
+        Y_bin(p)=1;
     % Our Negative class
-    else Y_bin(p)=1;
+    else Y_bin(p)=2;
     end
 end
 
@@ -56,20 +57,62 @@ hs_bin1=single(Y_bin(4000:6000));
 
 %Tree Parameters: Maximum Depth, Number of Trees, number of features to
 %sample for each node split
-pTrain={'maxDepth',50,'F1',5408,'M',50,'minChild',1};
-forest=forestTrain(xs0,hs_bin0,pTrain{:}); 
+pTrain={'maxDepth',50,'F1',1245,'M',50,'minChild',1};
+forest1=forestTrain(xs0,hs_bin0,pTrain{:});
 
 %Apply Random Forest Model to train data
-hsPr_bin0 = forestApply(xs0,forest);
-fprintf('\nTrain Error calculated using BER:%d',cBER(hs0,hsPr_bin0));
+hsPr_bin0 = forestApply(xs0,forest1);
+
+%Converting hs_bin0 from {1,2} to {0,1} 
+for p = 1:4000
+    % Our Negative class 
+    if (hs_bin0(p)==1)
+        hs_bin0(p)= 0;
+    % Our Negative class
+    else hs_bin0(p)=1;
+    end
+end
+
+%Converting hs_bin0 from {1,2} to {0,1} 
+for p = 1:4000
+    % Our Negative class 
+    if (hsPr_bin0(p)==1)
+        hsPr_bin0(p)= 0;
+    % Our Negative class
+    else hsPr_bin0(p)=1;
+    end
+end
+
+fprintf('\nTrain Error calculated using BER:%d',bBER(hs_bin0,hsPr_bin0));
 
 %Apply Random Forest Model to test data
-hsPr_bin1 = forestApply(xs1,forest);
-fprintf('\nTest Error calculated using BER:%d',cBER(hs1,hsPr_bin1));
+hsPr_bin1 = forestApply(xs1,forest1);
+
+%Converting hs_bin0 from {1,2} to {0,1} 
+for p = 1:2001
+    % Our Negative class 
+    if (hs_bin1(p)==1)
+        hs_bin1(p)= 0;
+    % Our Negative class
+    else hs_bin1(p)=1;
+    end
+end
+
+%Converting hs_bin0 from {1,2} to {0,1} 
+for p = 1:2001
+    % Our Negative class 
+    if (hsPr_bin1(p)==1)
+        hsPr_bin1(p)= 0;
+    % Our Negative class
+    else hsPr_bin1(p)=1;
+    end
+end
+
+fprintf('\nTest Error calculated using BER:%d',bBER(hs_bin1,hsPr_bin1));
 
 %Estimating Error using Mean
 e0=mean(hsPr_bin0~=hs_bin0); e1=mean(hsPr_bin1~=hs_bin1);
-fprintf('errors trn=%f tst=%f\n',e0,e1); figure(1);
+fprintf('\nerrors trn=%f tst=%f\n',e0,e1); figure(1);
 
 %Visualizing the train and test data after classification
 subplot(2,2,1); visualizeData(xs0,2,hs_bin0);
@@ -82,7 +125,7 @@ figure;
 for i=5000:5020 %Trying for only a subset of 20 images  
     clf();
 
-    img = imread( sprintf('train/imgs/train%05d.jpg', i) );
+    img = imread( sprintf('train%05d.jpg', i) );
     imshow(img);
 
 
