@@ -23,34 +23,43 @@ yTr = double(train.y);
 XTr = normalizeMe(XTr);
 
 gamma = 1;
-C = 0.0002;
+C = 0.0002
+fprintf('main: size x: %f, size y: %f\n', length(XTr), length(yTr));
+%             
+% [berTr, berTe] = crossValidation(XTr, yTr, 5, C, gamma, 'nn');
+% fprintf('[NN multi] training error: %f\n', berTr);
+% fprintf('[NN multi] testing error: %f\n', berTe);
+% 
 [berTr, berTe] = crossValidation(XTr, yTr, 5, C, gamma, 'binSVM');
 fprintf('[BINARY SVM] training error: %f\n', berTr);
 fprintf('[BINARY SVM] testing error: %f\n', berTe);
 
-[berTr, berTe] = crossValidation(XTr, yTr, 5, C, gamma, 'multiSVM');
-fprintf('[MULTI SVM] training error: %f\n', berTr);
-fprintf('[MULTI SVM] testing error: %f\n', berTe);
+% [berTr, berTe] = crossValidation(XTr, yTr, 5, C, gamma, 'multiSVM');
+% fprintf('[MULTI SVM] training error: %f\n', berTr);
+% fprintf('[MULTI SVM] testing error: %f\n', berTe);
 
-%% binary {cars, horses, airplane} (1,2,3) -> positive / others (4) -> negative
+% %% binary {cars, horses, airplane} (1,2,3) -> positive / others (4) -> negative
+% 
+% %transform to binary output
+% yTrBin = yTr;
+% yTrBin(yTrBin~=4) = 1;
+% yTrBin(yTrBin==4) = -1;
+% gamma = 1;
+% C = 1;
+% [y_hat, p_hat] = SVM(XTr, yTrBin, XTr, C, gamma);
+% errorBin = ber(yTrBin, y_hat);
+% 
+% fprintf('[SVM] Binary class error: %f\n', errorBin);
+% 
+% %% multiclass {cars: 1, horses: 2, airplane: 3, others: 4}
+% gamma = 1;
+% C = 1;
+% [y_hat, p_hat] = multiclassSVM(XTr, yTr, gamma, C);
+% disp(size(y_hat));
+% disp(y_hat);
+% errorMulti = ber(yTr, y_hat);
+% fprintf('[SVM] Multiclass error: %f\n', errorMulti);
 
-%transform to binary output
-yTrBin = yTr;
-yTrBin(yTrBin~=4) = 1;
-yTrBin(yTrBin==4) = -1;
-gamma = 1;
-C = 1;
-[y_hat, p_hat] = SVM(XTr, yTrBin, XTr, C, gamma);
-errorBin = ber(yTrBin, y_hat);
+%% Simple Neural Network
 
-fprintf('[SVM] Binary class error: %f\n', errorBin);
-
-%% multiclass {cars: 1, horses: 2, airplane: 3, others: 4}
-gamma = 1;
-C = 1;
-[y_hat, p_hat] = multiclassSVM(XTr, yTr, gamma, C);
-disp(size(y_hat));
-disp(y_hat);
-errorMulti = ber(yTr, y_hat);
-fprintf('[SVM] Multiclass error: %f\n', errorMulti);
-
+%[y_hat, p_hat] = simpleNeuralNetwork(XTr, yTr, XTe, neuralFt, rate)
