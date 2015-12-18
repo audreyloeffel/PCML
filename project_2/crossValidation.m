@@ -7,7 +7,7 @@ N = size(Y,1);
 idx = randperm(N);
 Nk = floor(N/K);
 Y = double(Y);
-
+X = ApplyPCA(X);
 
 for k = 1:K
     idxCV(k,:) = idx(1+(k-1)*Nk:k*Nk);
@@ -21,9 +21,8 @@ for k = 1:K
     yTe = Y(idxTe);
     XTe = X(idxTe,:);
     yTr = Y(idxTr);
-    XTr = X(idxTr,:);    
-     fprintf('avant switch : size x: %f, size y: %f\n', size(XTr,1), size(yTr, 1));
-    disp(length(idxTr));        
+    XTr = X(idxTr,:);
+    
     switch model
         case 'binSVM'
             fprintf('[Cross validation] %f folg\n', k);
@@ -47,24 +46,45 @@ for k = 1:K
             [y_hat, p_hat] = multiclassSVM(XTe, yTe, gamma, C);
             errorTe(k) = ber(yTe, y_hat);
             
-        case 'nn'
+        case 'bnn'
+            fprintf('[Cross validation] %f folg\n', k);
+            neuralFt = 20;
+            rate = 50;
+            yTrBin = yTr;
+            yTrBin(yTrBin~=4) = 1;
+            yTrBin(yTrBin==4) = 2;
+            yTeBin = yTe;
+            yTeBin(yTeBin~=4) = 1;
+            yTeBin(yTeBin==4) = 2;
+            [y_hat, p_hat] = simpleNeuralNetwork(XTr, yTrBin, XTr, neuralFt, rate)
+            errorTr(k) = bBER(yTrBin, y_hat);
+            errorTr2(k) = ber(yTrBin, y_hat);
+            clear y_hat; clear p_hat;
+            [y_hat, p_hat] = simpleNeuralNetwork(XTr, yTrBin, XTe, neuralFt, rate)
+            errorTe(k) = bBER(yTeBin, y_hat);
+            errorTe2(k) = ber(yTeBin, y_hat);
+            
+        case 'mnn'
             fprintf('[Cross validation] %f folg\n', k);
             neuralFt = 10;
             rate = 2;
-            fprintf('case: size x: %f, size y: %f\n', length(XTr), length(yTr));
-            
-            [y_hat, p_hat] = simpleNeuralNetwork(XTr, yTr, neuralFt, rate)
+          
+            [y_hat, p_hat] = simpleNeuralNetwork(XTr, yTr, XTr, neuralFt, rate)
+            errorTr(k) = cBER(yTr, y_hat);
+            %errorTr2(k) = ber(yTr, y_hat);
             clear y_hat; clear p_hat;
-            [y_hat, p_hat] = simpleNeuralNetwork(XTe, yTe, neuralFt, rate)
-            errorTe(k) = ber(yTe, y_hat);
+            [y_hat, p_hat] = simpleNeuralNetwork(XTr, yTr, XTe, neuralFt, rate)
+            errorTe(k) = cBER(yTe, y_hat);
+            %errorTe2(k) = ber(yTe, y_hat);
             
         otherwise
             fprintf('It is not a existing model!');
     end
-
+    
 end
 
 berTr = mean(errorTr);
 berTe = mean(errorTe);
+%fprintf('ber errors: %f, %f\n', berTr2,berTe2);
 
 end

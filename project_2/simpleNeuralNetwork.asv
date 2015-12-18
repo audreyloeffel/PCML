@@ -1,14 +1,19 @@
-function [y_hat, p_hat] = simpleNeuralNetwork()
+function [y_hat, p_hat] = simpleNeuralNetwork(XTr, yTr, neuralFt, rate)
 
-num_class = size(unique(yTr),1)
-nn = nnsetup([784 100 10]);
+XTrTemp = XTr;
+fprintf('nn: size xTemp: %f, size y: %f\n', size(XTrTemp,1), length(yTr));
+num_class = size(unique(yTr),1);
+num_feature = size(XTr, 2);
+disp(size(XTr))
+disp
+
+nn = nnsetup([num_feature neuralFt num_class]);
 
 
 opts.numepochs =  1;   %  Number of full sweeps through data
 opts.batchsize = 100;  %  Take a mean gradient step over this many samples
-[nn, L] = nntrain(nn, train_x, train_y, opts);
-
-[er, bad] = nntest(nn, test_x, test_y);
+fprintf('nn: size x: %f, length XTr: %f\n', size(XTr,1), length(XTr));
+[nn, L] = nntrain(nn, XTr, yTr, opts);
 
 %% 
 
