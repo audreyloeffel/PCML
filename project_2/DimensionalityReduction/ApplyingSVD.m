@@ -29,4 +29,4 @@ for i = 1:size(eigVal,1)
 end
 
 
-X_hog2 =  A' * eigVal;
+X_hog2 =  A' * eigVal2;

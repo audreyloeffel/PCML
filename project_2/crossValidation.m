@@ -7,8 +7,6 @@ N = size(Y,1);
 idx = randperm(N);
 Nk = floor(N/K);
 Y = double(Y);
-X = ApplyPCA(X);
-
 for k = 1:K
     idxCV(k,:) = idx(1+(k-1)*Nk:k*Nk);
 end

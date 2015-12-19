@@ -1,8 +1,9 @@
 clear all;
 load('data/train.mat');
+load('data/cnnNormalized.mat');
 
 % parameters 1: hog, 2: cnn, 3: both
-featuresFrom = 1;
+featuresFrom = 2;
 
 switch featuresFrom
     case 1
@@ -20,7 +21,9 @@ switch featuresFrom
 end
       
 yTr = double(train.y);
-XTr = normalizeMe(XTr);
+XTr = Xcnn;
+%XTr = normalizeMe(XTr);
+
 
 gamma = 1;
 C = 0.0002;
@@ -29,17 +32,17 @@ C = 0.0002;
 % fprintf('[NN binary] training error: %f\n', berTr);
 % fprintf('[NN binary] testing error: %f\n', berTe);
 % 
-% [berTr, berTe] = crossValidation(XTr, yTr, 5, 0, 0, 'mnn');
-% fprintf('[NN multi] training error: %f\n', berTr);
-% fprintf('[NN multi] testing error: %f\n', berTe);
-% 
-[berTr, berTe] = crossValidation(XTr, yTr, 5, C, gamma, 'binSVM');
-fprintf('[BINARY SVM] training error: %f\n', berTr);
-fprintf('[BINARY SVM] testing error: %f\n', berTe);
+[berTr, berTe] = crossValidation(XTr, yTr, 5, 0, 0, 'mnn');
+fprintf('[NN multi] training error: %f\n', berTr);
+fprintf('[NN multi] testing error: %f\n', berTe);
 
-[berTr, berTe] = crossValidation(XTr, yTr, 5, C, gamma, 'multiSVM');
-fprintf('[MULTI SVM] training error: %f\n', berTr);
-fprintf('[MULTI SVM] testing error: %f\n', berTe);
+% [berTr, berTe] = crossValidation(XTr, yTr, 5, C, gamma, 'binSVM');
+% fprintf('[BINARY SVM] training error: %f\n', berTr);
+% fprintf('[BINARY SVM] testing error: %f\n', berTe);
+% 
+% [berTr, berTe] = crossValidation(XTr, yTr, 5, C, gamma, 'multiSVM');
+% fprintf('[MULTI SVM] training error: %f\n', berTr);
+% fprintf('[MULTI SVM] testing error: %f\n', berTe);
 
 % %% binary {cars, horses, airplane} (1,2,3) -> positive / others (4) -> negative
 % 
