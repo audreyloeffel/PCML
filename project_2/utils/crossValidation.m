@@ -1,4 +1,4 @@
-function [berTr, berTe, berTr2, berTe2] = crossValidation(X, Y, K, C, gamma, model)
+function [berTr, berTe] = crossValidation(X, Y, K, model)
 
 % split data in K fold
 setSeed(1);
@@ -7,6 +7,8 @@ N = size(Y,1);
 idx = randperm(N);
 Nk = floor(N/K);
 Y = double(Y);
+options = statset('UseParallel',1);
+
 for k = 1:K
     idxCV(k,:) = idx(1+(k-1)*Nk:k*Nk);
 end
@@ -30,26 +32,55 @@ for k = 1:K
             yTeBin = yTe;
             yTeBin(yTeBin~=4) = 1;
             yTeBin(yTeBin==4) = 0;
-            [y_hat, p_hat] = SVM(XTr, yTrBin, XTr, C, gamma);
+            
+            t = templateSVM('BoxConstraint',0.11,'KernelFunction','linear');
+            LinAllModel = fitcecoc(XTr,yTrBin,'Learners',t,'Coding','onevsall','Options',options);
+            yTr_hat = predict(LinAllModel,XTr);
+            yTe_hat = predict(LinAllModel,XTe);
+            errorTr(k) = ber(yTrBin, yTr_hat);
+            errorTe(k) = ber(yTeBin, yTe_hat);
+            
+            % model = svmtrain(XTr,yTrBin);
+            % y_hat = svmclassify(model,XTr);
+            
+            % [y_hat, p_hat] = SVM(XTr, yTrBin, XTr, C, gamma);
             %fprintf('size ytr %i, %i, size yhat %i, %i\n',size(yTrBin,1),size(yTrBin,2), size(y_hat,1),size(y_hat,2))
-            errorTr(k) = bBER(yTrBin, y_hat);
-            errorTr2(k) = ber(yTrBin, y_hat);
-            clear y_hat; clear p_hat;
-            [y_hat, p_hat] = SVM(XTr, yTrBin, XTe, C, gamma);
+            %model = svmtrain(XTr, yTrBin, 'boxconstraint', 0.1);
+            % predTrBin = svmclassify(model, XTr);
+            %errorTr(k) = ber(yTrBin, predTrBin);
+            %predTeBin = svmclassify(model, XTe);
+            %errorTe(k) = ber(yTerBin, predTeBin);
+            % clear y_hat; clear p_hat;
+            %[y_hat, p_hat] = SVM(XTr, yTrBin, XTe, C, gamma);
+            % model = svmtrain(XTr,yTeBin);
+            % y_hat = svmclassify(model,XTe);
             %fprintf('size ytr %i, %i, size yhat %i, %i\n',size(yTrBin,1),size(yTrBin,2), size(y_hat,1),size(y_hat,2))
-            errorTe(k) = bBER(yTeBin, y_hat);
-            errorTe2(k) = ber(yTeBin, y_hat);
+            
             
         case 'multiSVM'
-            fprintf('[Cross validation] %f folg\n', k);
-            [y_hat, p_hat] = multiclassSVM(XTr, yTr, gamma, C);
-            errorTr(k) = cBER(yTr, y_hat);
-            errorTr2(k) = ber(yTr, y_hat);
-            clear y_hat; clear p_hat;
-            [y_hat, p_hat] = multiclassSVM(XTe, yTe, gamma, C);
-            errorTe(k) = cBER(yTe, y_hat);
-            errorTe2(k) = ber(yTe, y_hat);
+            fprintf('[Cross validation] %i folg\n', k);
             
+            t = templateSVM('BoxConstraint',0.11,'KernelFunction','linear');
+            LinAllModel = fitcecoc(XTr,yTrn,'Learners',t,'Coding','onevsall','Options',options);
+            yTr_hat = predict(LinAllModel,XTr);
+            yTe_hat = predict(LinAllModel,XTe);
+            errorTr(k) = ber(yTr, yTr_hat);
+            errorTe(k) = ber(yTe, yTe_hat);
+            
+            
+%             model = svmtrain(XTr, yTr, 'boxconstraint', 0.1);
+%             predTrMul = svmclassify(model, XTr);
+%             errorTr(k) = ber(yTr, predTrMul);
+%             predTeMul = svmclassify(model, XTe);
+%             errorTe(k) = ber(yTe, predTeMul);
+%             y_hat = multisvm(XTr, yTr, XTr);
+%             
+%             errorTr(k) = ber(yTr, y_hat);
+%             clear y_hat; clear p_hat;
+%             y_hat = multisvm(XTe, yTe, XTe);
+%           
+%             errorTe(k) = ber(yTe, y_hat);
+%             
         case 'bnn'
             fprintf('[Cross validation] %f folg\n', k);
             neuralFt = 20;
@@ -61,12 +92,12 @@ for k = 1:K
             yTeBin(yTeBin~=4) = 1;
             yTeBin(yTeBin==4) = 0;
             [y_hat, p_hat] = simpleNeuralNetwork(XTr, yTrBin, XTr, neuralFt, rate)
-            errorTr(k) = bBER(yTrBin, y_hat);
-            errorTr2(k) = ber(yTrBin, y_hat);
+            
+            errorTr(k) = ber(yTrBin, y_hat);
             clear y_hat; clear p_hat;
             [y_hat, p_hat] = simpleNeuralNetwork(XTr, yTrBin, XTe, neuralFt, rate)
-            errorTe(k) = bBER(yTeBin, y_hat);
-            errorTe2(k) = ber(yTeBin, y_hat);
+           
+            errorTe(k) = ber(yTeBin, y_hat);
             
         case 'mnn'
             fprintf('[Cross validation] %f folg\n', k);
@@ -74,12 +105,12 @@ for k = 1:K
             rate = 2;
           
             [y_hat, p_hat] = simpleNeuralNetwork(XTr, yTr, XTr, neuralFt, rate)
-            errorTr(k) = cBER(yTr, y_hat);
-            errorTr2(k) = ber(yTr, y_hat);
+            
+            errorTr(k) = ber(yTr, y_hat);
             clear y_hat; clear p_hat;
             [y_hat, p_hat] = simpleNeuralNetwork(XTr, yTr, XTe, neuralFt, rate)
-            errorTe(k) = cBER(yTe, y_hat);
-            errorTe2(k) = ber(yTe, y_hat);
+            
+            errorTe(k) = ber(yTe, y_hat);
             
         otherwise
             fprintf('It is not a existing model!');
@@ -89,7 +120,5 @@ end
 
 berTr = errorTr;
 berTe = errorTe;
-berTr2 = errorTr2;
-berTe2 = errorTe2;
 
 end
