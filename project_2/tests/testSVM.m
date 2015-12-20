@@ -1,4 +1,4 @@
-%
+git%
 % Test SVM with Hog and CNN features for the binary an multiclass
 % classification.
 %
