@@ -10,7 +10,7 @@ load('data/pca_Xhog.mat');
 yTr = double(train.y);
 XTrcnn = Xcnn;
 XTrhog = Xhog;
-Xtrall = [Xcnn Xhog];
+XTrall = [Xcnn Xhog];
 gamma = 1;
 C = 1;
 [cnnberTr, cnnberTe, cnnberTr2, cnnberTe2] = crossValidation(XTrcnn, yTr, 5, C, gamma, 'binSVM');
