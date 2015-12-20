@@ -35,9 +35,14 @@ for k = 1:K
     
 end
 
-berTr = mean(errorTr);
-berTe = mean(errorTe);
-berTr2 = mean(errorTr2);
-berTe2 = mean(errorTe2);
+berTr = errorTr;
+berTe = errorTe;
+berTr2 = errorTr2;
+berTe2 = errorTe2;
+
+% berTr = mean(errorTr);
+% berTe = mean(errorTe);
+% berTr2 = mean(errorTr2);
+% berTe2 = mean(errorTe2);
 
 end

@@ -15,7 +15,7 @@ save('pca_Xcnn.mat', 'Xcnn');
 fprintf('PCA on Hog features ...');
 Xnorm = double(train.X_hog);
 Xnorm(:, end) = [];
-k = 500;
+k = 400;
 
 [U, mu, vars] = pca(Xnorm);
 [yk, Xhog, truc] = pcaApply(Xnorm, U, mu, k);

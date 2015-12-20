@@ -1,4 +1,4 @@
-function [berTr, berTe] = crossValidation(X, Y, K, C, gamma, model)
+function [berTr, berTe, berTr2, berTe2] = crossValidation(X, Y, K, C, gamma, model)
 
 % split data in K fold
 setSeed(1);
@@ -32,17 +32,21 @@ for k = 1:K
             yTeBin(yTeBin==4) = -1;
             [y_hat, p_hat] = SVM(XTr, yTrBin, XTr, C, gamma);
             errorTr(k) = ber(yTrBin, y_hat);
+            errorTe2(k) = ber(yTeBin, y_hat);
             clear y_hat; clear p_hat;
             [y_hat, p_hat] = SVM(XTr, yTrBin, XTe, C, gamma);
-            errorTe(k) = ber(yTeBin, y_hat);
+             errorTe(k) = mBER(yTeBin, y_hat);
+            errorTe2(k) = ber(yTeBin, y_hat);
             
         case 'multiSVM'
             fprintf('[Cross validation] %f folg\n', k);
             [y_hat, p_hat] = multiclassSVM(XTr, yTr, gamma, C);
             errorTr(k) = ber(yTr, y_hat);
+            errorTe2(k) = ber(yTr, y_hat);
             clear y_hat; clear p_hat;
             [y_hat, p_hat] = multiclassSVM(XTe, yTe, gamma, C);
-            errorTe(k) = ber(yTe, y_hat);
+            errorTe(k) = mBER(yTe, y_hat);
+            errorTe2(k) = ber(yTe, y_hat);
             
         case 'bnn'
             fprintf('[Cross validation] %f folg\n', k);
@@ -69,11 +73,11 @@ for k = 1:K
           
             [y_hat, p_hat] = simpleNeuralNetwork(XTr, yTr, XTr, neuralFt, rate)
             errorTr(k) = cBER(yTr, y_hat);
-            %errorTr2(k) = ber(yTr, y_hat);
+            errorTr2(k) = ber(yTr, y_hat);
             clear y_hat; clear p_hat;
             [y_hat, p_hat] = simpleNeuralNetwork(XTr, yTr, XTe, neuralFt, rate)
             errorTe(k) = cBER(yTe, y_hat);
-            %errorTe2(k) = ber(yTe, y_hat);
+            errorTe2(k) = ber(yTe, y_hat);
             
         otherwise
             fprintf('It is not a existing model!');
@@ -81,8 +85,9 @@ for k = 1:K
     
 end
 
-berTr = mean(errorTr);
-berTe = mean(errorTe);
-%fprintf('ber errors: %f, %f\n', berTr2,berTe2);
+berTr = errorTr;
+berTe = errorTe;
+berTr2 =errorTr2;
+berTe2 = errorTe2;
 
 end
