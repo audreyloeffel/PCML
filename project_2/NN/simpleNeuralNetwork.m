@@ -7,6 +7,8 @@ num_feature = size(XTr, 2);
 
 nn = nnsetup([num_feature neuralFt num_class]);
 nn.learningRate = rate;
+nn.weightPenaltyL2 = 0.0003 
+nn.activation_function = 'sigmoid'
 
 opts.numepochs =  30;   %  Number of full sweeps through data
 opts.batchsize = 500;  %  Take a mean gradient step over this many samples
