@@ -31,18 +31,20 @@ for k = 1:K
             yTeBin(yTeBin~=4) = 1;
             yTeBin(yTeBin==4) = -1;
             [y_hat, p_hat] = SVM(XTr, yTrBin, XTr, C, gamma);
-            errorTr(k) = ber(yTrBin, y_hat);
-            errorTe2(k) = ber(yTeBin, y_hat);
+            %fprintf('size ytr %i, %i, size yhat %i, %i\n',size(yTrBin,1),size(yTrBin,2), size(y_hat,1),size(y_hat,2))
+            errorTr(k) = bBER(yTrBin, y_hat);
+            errorTe2(k) = ber(yTrBin, y_hat);
             clear y_hat; clear p_hat;
             [y_hat, p_hat] = SVM(XTr, yTrBin, XTe, C, gamma);
-             errorTe(k) = mBER(yTeBin, y_hat);
+            %fprintf('size ytr %i, %i, size yhat %i, %i\n',size(yTrBin,1),size(yTrBin,2), size(y_hat,1),size(y_hat,2))
+            errorTe(k) = bBER(yTeBin, y_hat);
             errorTe2(k) = ber(yTeBin, y_hat);
             
         case 'multiSVM'
             fprintf('[Cross validation] %f folg\n', k);
             [y_hat, p_hat] = multiclassSVM(XTr, yTr, gamma, C);
-            errorTr(k) = ber(yTr, y_hat);
-            errorTe2(k) = ber(yTr, y_hat);
+            errorTr(k) = mBER(yTr, y_hat);
+            errorTr2(k) = ber(yTr, y_hat);
             clear y_hat; clear p_hat;
             [y_hat, p_hat] = multiclassSVM(XTe, yTe, gamma, C);
             errorTe(k) = mBER(yTe, y_hat);
