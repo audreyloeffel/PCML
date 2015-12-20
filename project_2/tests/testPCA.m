@@ -21,3 +21,4 @@ k = 400;
 [yk, Xhog, truc] = pcaApply(Xnorm, U, mu, k);
 save('data/pca_Xhog.mat', 'Xhog');
 
+

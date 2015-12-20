@@ -12,7 +12,7 @@ XTrcnn = Xcnn;
 XTrhog = Xhog;
 Xtrall = [Xcnn Xhog];
 gamma = 1;
-
+C = 1;
 [cnnberTr, cnnberTe, cnnberTr2, cnnberTe2] = crossValidation(XTrcnn, yTr, 5, C, gamma, 'binSVM');
 cBTr = mean(cnnberTr);
 cBTe = mean(cnnberTe);
