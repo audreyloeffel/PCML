@@ -2,4 +2,5 @@ DeepLearnToolbox/
 Example/train
 data/train.mat
 data/cnnNormalized.mat
+data/
 *.asv

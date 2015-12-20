@@ -3,7 +3,7 @@ function [y_hat, p_hat] = multiclassSVM( XTr, yTr, gamma, C )
 %   Detailed explanation goes here
 for class =1:4
     yTrClass = yTr;
-    for row = 1: length(XTr)
+    for row = 1: size(yTr,1)
         if(yTrClass(row,1) == class)
             yTrClass(row,1) = -1;
         else
@@ -16,7 +16,7 @@ end
 
 
 % Classify into the clusters
-    for i = 1:length(y_hat)
+    for i = 1:size(y_hat,1)
         [pred(i,1), idx(i,1)] = max(p_hat(i, :));
     end
     

@@ -21,7 +21,34 @@ for c1 = 1:num_class
         end
     end
     
+    end
+    
+    function [ yTe_hat ] = multiSVM_onevsone(XTr, yTr, XTe, C, ker)
+pair = nchoosek(1:4,2);
+
+yTe_hat = zeros(length(XTe),4);
+
+for i = 1:length(pair)
+    lab1 = double(pair(i,1));
+    lab2 = double(pair(i,2)); 
+    
+    idx = find((yTr == lab1) + (yTr == lab2));
+    
+    tX = XTr(idx,:);
+    ty = yTr(idx,:);
+    ty(ty == lab1) = 1;
+    ty(ty == lab2) = -1;
+    
+    [~,yTe_pred] = SVM(tX, ty, XTe, C, ker);
+
+    yTe_hat(:,lab1) = yTe_hat(:,lab1) + 1*(yTe_pred == 1)';
+    yTe_hat(:,lab2) = yTe_hat(:,lab2) + 1*(yTe_pred == -1)';
 end
+
+[~,yTe_hat] = max(yTe_hat,[],2);
+
+end
+    
 %%
 % 
 % for class =1:4

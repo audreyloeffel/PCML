@@ -26,14 +26,14 @@ for k = 1:K
             fprintf('[Cross validation] %f folg\n', k);
             yTrBin = yTr;
             yTrBin(yTrBin~=4) = 1;
-            yTrBin(yTrBin==4) = -1;
+            yTrBin(yTrBin==4) = 0;
             yTeBin = yTe;
             yTeBin(yTeBin~=4) = 1;
-            yTeBin(yTeBin==4) = -1;
+            yTeBin(yTeBin==4) = 0;
             [y_hat, p_hat] = SVM(XTr, yTrBin, XTr, C, gamma);
             %fprintf('size ytr %i, %i, size yhat %i, %i\n',size(yTrBin,1),size(yTrBin,2), size(y_hat,1),size(y_hat,2))
             errorTr(k) = bBER(yTrBin, y_hat);
-            errorTe2(k) = ber(yTrBin, y_hat);
+            errorTr2(k) = ber(yTrBin, y_hat);
             clear y_hat; clear p_hat;
             [y_hat, p_hat] = SVM(XTr, yTrBin, XTe, C, gamma);
             %fprintf('size ytr %i, %i, size yhat %i, %i\n',size(yTrBin,1),size(yTrBin,2), size(y_hat,1),size(y_hat,2))
@@ -43,11 +43,11 @@ for k = 1:K
         case 'multiSVM'
             fprintf('[Cross validation] %f folg\n', k);
             [y_hat, p_hat] = multiclassSVM(XTr, yTr, gamma, C);
-            errorTr(k) = mBER(yTr, y_hat);
+            errorTr(k) = cBER(yTr, y_hat);
             errorTr2(k) = ber(yTr, y_hat);
             clear y_hat; clear p_hat;
             [y_hat, p_hat] = multiclassSVM(XTe, yTe, gamma, C);
-            errorTe(k) = mBER(yTe, y_hat);
+            errorTe(k) = cBER(yTe, y_hat);
             errorTe2(k) = ber(yTe, y_hat);
             
         case 'bnn'
@@ -56,10 +56,10 @@ for k = 1:K
             rate = 50;
             yTrBin = yTr;
             yTrBin(yTrBin~=4) = 1;
-            yTrBin(yTrBin==4) = 2;
+            yTrBin(yTrBin==4) = 0;
             yTeBin = yTe;
             yTeBin(yTeBin~=4) = 1;
-            yTeBin(yTeBin==4) = 2;
+            yTeBin(yTeBin==4) = 0;
             [y_hat, p_hat] = simpleNeuralNetwork(XTr, yTrBin, XTr, neuralFt, rate)
             errorTr(k) = bBER(yTrBin, y_hat);
             errorTr2(k) = ber(yTrBin, y_hat);
@@ -89,7 +89,7 @@ end
 
 berTr = errorTr;
 berTe = errorTe;
-berTr2 =errorTr2;
+berTr2 = errorTr2;
 berTe2 = errorTe2;
 
 end
