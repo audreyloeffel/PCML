@@ -1,4 +1,4 @@
-function [berTr, berTe, berTr2,berTe2] = crossValidationNN(X, Y, K, neuralFt, numpoch, batchsize, rate)
+function [berTr, berTe] = crossValidationNN(X, Y, K, neuralFt, numpoch, batchsize, rate)
 
 % split data in K fold
 setSeed(1);
@@ -24,12 +24,12 @@ for k = 1:K
     fprintf('[Cross validation] %i folg\n', k);
         
     [y_hat, ~] = simpleNeuralNetworkOpti(XTr, yTr, XTr, neuralFt, numpoch, batchsize, rate);
-    errorTr(k) = cBER(yTr, y_hat);
-    errorTr2(k) = ber(yTr, y_hat);
+   
+    errorTr(k) = ber(yTr, y_hat);
     clear y_hat; clear p_hat;
     [y_hat, ~] = simpleNeuralNetworkOpti(XTr, yTr, XTe, neuralFt, numpoch, batchsize, rate);
-    errorTe(k) = cBER(yTe, y_hat);
-    errorTe2(k) = ber(yTe, y_hat);
+   
+    errorTe(k) = ber(yTe, y_hat);
     
     
     
@@ -37,8 +37,6 @@ end
 
 berTr = errorTr;
 berTe = errorTe;
-berTr2 = errorTr2;
-berTe2 = errorTe2;
 
 % berTr = mean(errorTr);
 % berTe = mean(errorTe);

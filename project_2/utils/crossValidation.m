@@ -32,7 +32,7 @@ for k = 1:K
             yTeBin = yTe;
             yTeBin(yTeBin~=4) = 1;
             yTeBin(yTeBin==4) = 0;
-            
+            options = statset('UseParallel',1);
             t = templateSVM('BoxConstraint',0.11,'KernelFunction','linear');
             LinAllModel = fitcecoc(XTr,yTrBin,'Learners',t,'Coding','onevsall','Options',options);
             yTr_hat = predict(LinAllModel,XTr);
@@ -59,9 +59,9 @@ for k = 1:K
             
         case 'multiSVM'
             fprintf('[Cross validation] %i folg\n', k);
-            
+            options = statset('UseParallel',1);
             t = templateSVM('BoxConstraint',0.11,'KernelFunction','linear');
-            LinAllModel = fitcecoc(XTr,yTrn,'Learners',t,'Coding','onevsall','Options',options);
+            LinAllModel = fitcecoc(XTr,yTr,'Learners',t,'Coding','onevsall','Options',options);
             yTr_hat = predict(LinAllModel,XTr);
             yTe_hat = predict(LinAllModel,XTe);
             errorTr(k) = ber(yTr, yTr_hat);

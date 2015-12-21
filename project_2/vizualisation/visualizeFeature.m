@@ -21,3 +21,4 @@ subplot(122);
 feature = hog( single(img)/255, 17, 8);
 im( hogDraw(feature) ); colormap gray;
 axis off; colorbar off;
+print -dpdf hog_feature_ex.pdf

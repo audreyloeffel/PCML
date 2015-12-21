@@ -3,17 +3,16 @@
 % classification.
 %
 
-% load('data/train.mat');
-% load('data/pca_Xcnn.mat');
-% load('data/pca_Xhog.mat');
+load('data/train.mat');
+load('data/pca_Xcnn.mat');
+load('data/pca_Xhog.mat');
 
 yTr = double(train.y);
 XTrcnn = normalizeMe(Xcnn);
 XTrhog = normalizeMe(Xhog);
 XTrall = [Xcnn Xhog];
-
+%%
 K = 4;
-
 
 fprintf('CNN Binary SVM\n');
 [cnnberTr, cnnberTe] = crossValidation(XTrcnn, yTr, K, 'binSVM');
@@ -23,6 +22,8 @@ fprintf('HOG Binary SVM\n');
 [hogberTr, hogberTe] = crossValidation(XTrhog, yTr, K,'binSVM');
 hBTr = mean(hogberTr);
 hBTe = mean(hogberTe);
+%%
+K = 4;
 fprintf('CNN Multi SVM\n');
 [cmberTr, cmbernTe] = crossValidation(XTrcnn, yTr, K, 'multiSVM');
 cMTr = mean(cmberTr);
@@ -31,7 +32,7 @@ fprintf('HOG Multi SVM\n');
 [hmberTr, hmberTe,] = crossValidation(XTrcnn, yTr, K, 'multiSVM');
 hMTr = mean(hmberTr);
 hMBTe = mean(hmberTe);
-save('data/wsTestSVM.mat');
+save('data/MultiSVM_hog_cnn.mat');
 %%
 fprintf('BOTH Binary SVM\n');
 [aberTr, aberTe] = crossValidation(XTrall, yTr, K, 'binSVM');
